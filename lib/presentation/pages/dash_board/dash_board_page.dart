@@ -6,6 +6,9 @@ import 'package:smarthome/core/utils/images_path.dart';
 import 'package:smarthome/presentation/pages/dash_board/dash_board_controller.dart';
 import 'package:smarthome/presentation/pages/dash_board/widgets/bottom_bar_widget.dart';
 import 'package:smarthome/presentation/pages/dash_board/widgets/custom_bottom_widget.dart';
+import 'package:smarthome/presentation/pages/home/home_page.dart';
+import 'package:smarthome/presentation/pages/setting/setting_page.dart';
+import 'package:smarthome/presentation/pages/voice/voice_page.dart';
 
 
 class DashBoardPage extends GetView<DashBoardController> {
@@ -21,7 +24,7 @@ class DashBoardPage extends GetView<DashBoardController> {
       body: Obx(() {
         return LazyIndexedStack(
           index: controller.currentIndex.value,
-          children: [Container(), Container(), Container(), Container(), Container()],
+          children: [const HomePage(), Container(), const VoicePage(), Container(), const SettingPage()],
         );
       }),
       bottomNavigationBar: Obx(
@@ -56,7 +59,7 @@ class DashBoardPage extends GetView<DashBoardController> {
             onTap: () {
               controller.onChangedDashboardPage(index: 2);
             },
-            imagePath: ImagesPath.houseIcon,
+            imagePath: ImagesPath.voice_search,
             isSelected: controller.currentIndex.value == 2),
         BottomBarWidget(
             onTap: () {

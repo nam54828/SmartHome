@@ -92,6 +92,13 @@ class AppText extends TextStyle{
     fontWeight: FontWeight.normal,
     color: Colors.black,
   );
+  static TextStyle get text24 => TextStyle(
+    fontSize: 22.sp,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.normal,
+    color: Colors.black,
+  );
+
 
   static TextStyle get text30 => TextStyle(
     fontSize: 30.sp,

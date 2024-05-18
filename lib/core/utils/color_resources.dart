@@ -16,4 +16,13 @@ mixin ColorResources {
   static const Color RED_CUSTOM = Color.fromRGBO(205, 34, 55, 1);
   static const Color COLOR_071A52 = Color(0xFF071A52);
   static const Color COLOR_16B978 = Color(0xFF16B978);
+  static const Color PRIMARY_1 = Color.fromRGBO(22, 185, 120, 1);
+  //Text
+  static const Color MAIN_TITLE = Color(0xFF323232);
+  static const Color COLOR_F6F6F7 = Color(0xFFF6F6F7);
+  static const Color COLOR_AFB0AB = Color(0xFFAFB0AB);
+  static const Color COLOR_F5F6F8 = Color(0xFFF5F6F8);
+  static const Color COLOR_9E9E9E = Color(0xFF9E9E9E);
+  static const Color COLOR_121212 = Color(0xFF121212);
+  static const Color COLOR_454141 = Color(0xFF454141);
 }

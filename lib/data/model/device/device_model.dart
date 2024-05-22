@@ -32,6 +32,28 @@ class Category {
     );
   }
 
+  Category copyWith({
+    String? name,
+    String? topic,
+    bool? status,
+    String? color,
+    String? voice,
+    bool? notification,
+    String? time,
+    String? icon,
+  }) {
+    return Category(
+      name: name ?? this.name,
+      topic: topic ?? this.topic,
+      status: status ?? this.status,
+      color: color ?? this.color,
+      voice: voice ?? this.voice,
+      notification: notification ?? this.notification,
+      time: time ?? this.time,
+      icon: icon ?? this.icon,
+    );
+  }
+
 
   Map<String, dynamic> toJson() {
     return {
@@ -45,6 +67,7 @@ class Category {
       'icon': icon,
     };
   }
+
 
 }
 
@@ -76,6 +99,26 @@ class Data {
       v: json['__v'] ?? '',
       colorcategory: json['colorcategory'] ?? '',
       namecategory: json['namecategory'] ?? '',
+    );
+  }
+
+  Data copyWith({
+    Category? category,
+    String? id,
+    String? createdAt,
+    String? updatedAt,
+    int? v,
+    String? colorcategory,
+    String? namecategory,
+  }) {
+    return Data(
+      category: category ?? this.category,
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      v: v ?? this.v,
+      colorcategory: colorcategory ?? this.colorcategory,
+      namecategory: namecategory ?? this.namecategory,
     );
   }
 

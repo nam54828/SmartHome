@@ -24,8 +24,8 @@ class HomePage extends GetView<HomeController> {
             children: [
               _appBar(),
               _header(),
-              _buildCategoriesHistory(),
-              _buildItemHistory()
+              _buildCategoriesDevice(),
+              _buildItemDevice()
             ],
           ),
         ),
@@ -190,7 +190,7 @@ class HomePage extends GetView<HomeController> {
     );
   }
 
-  Widget _buildCategoriesHistory() {
+  Widget _buildCategoriesDevice() {
     return Padding(
       padding: CustomSizeUtil.setEdgeInsetsOnly(
         top: CustomSizeUtil.SPACE_1X,
@@ -288,12 +288,12 @@ class HomePage extends GetView<HomeController> {
     }
   }
 
-  Widget _buildItemHistory() {
+  Widget _buildItemDevice() {
     return SizedBox(
       height: Get.height,
       child: Obx(() {
         final filteredResults = controller.deviceModel
-            .expand((model) => model.data!)
+            .expand((model) => model.data)
             .where((result) => result.namecategory == controller.selectedCategory.value)
             .toList();
 
@@ -302,16 +302,19 @@ class HomePage extends GetView<HomeController> {
           runSpacing: 15.h,
           children: filteredResults.map((result) {
             return CategoryDevice(
-              text: result.category!.name ?? '',
-              initialSwitchValue: result.category!.status == false,
-              icon: int.parse(result.category!.icon ?? '0'),
-              color: controller.getColorFromHex(result.category!.color ?? ''),
-              onTap: () {},
+              text: result.category.name,
+              initialSwitchValue: result.category.status,
+              icon: int.parse(result.category.icon),
+              color: controller.getColorFromHex(result.category.color),
+              onTap: (newStatus) {
+                controller.updateDeviceStatus(result, newStatus);
+              },
             );
           }).toList(),
         );
       }),
     );
   }
+
 
 }

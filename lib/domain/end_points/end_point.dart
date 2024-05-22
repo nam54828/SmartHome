@@ -5,5 +5,7 @@ class EndPoints {
 
   static const String device = '/device';
 
+  static const String history = '/history';
+
 
 }

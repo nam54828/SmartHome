@@ -38,4 +38,20 @@ class DeviceRepository {
       onError(ApiResponse.withError(ApiErrorHandler.getMessage(e)).error);
     }
   }
+
+  ///
+  /// METHOD PUT
+  ///
+  Future<void> updateDevice(
+      {required Data data,
+      required String idDevice,
+      required Function() onSuccess,
+      required Function(dynamic error) onError}) async {
+    try {
+      await _dio.put('${EndPoints.device}/$idDevice', data: data.toJson());
+      onSuccess();
+    } catch (e) {
+      onError(ApiResponse.withError(ApiErrorHandler.getMessage(e)).error);
+    }
+  }
 }

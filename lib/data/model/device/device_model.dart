@@ -1,78 +1,119 @@
-class DeviceModel {
-  int? count;
-  List<Data>? data;
+class Category {
+  String name;
+  String topic;
+  bool status;
+  String color;
+  String voice;
+  bool notification;
+  String time;
+  String icon;
 
-  DeviceModel({this.count, this.data});
+  Category({
+    required this.name,
+    required this.topic,
+    required this.status,
+    required this.color,
+    required this.voice,
+    required this.notification,
+    required this.time,
+    required this.icon,
+  });
 
-  DeviceModel.fromJson(Map<String, dynamic> json) {
-    count = json['count'];
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
-      });
-    }
+  factory Category.fromJson(Map<String, dynamic> json) {
+    return Category(
+      name: json['name'],
+      topic: json['topic'],
+      status: json['status'],
+      color: json['color'],
+      voice: json['voice'],
+      notification: json['notification'],
+      time: json['time'],
+      icon: json['icon'],
+    );
   }
+
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['count'] = this.count;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    return data;
+    return {
+      'name': name,
+      'topic': topic,
+      'status': status,
+      'color': color,
+      'voice': voice,
+      'notification': notification,
+      'time': time,
+      'icon': icon,
+    };
   }
+
 }
 
 class Data {
-  String? sId;
-  String? name;
-  String? topic;
-  String? status;
-  String? category;
-  String? color;
-  bool? notification;
+  Category category;
+  String? id;
   String? createdAt;
   String? updatedAt;
-  int? iV;
+  int? v;
+  String colorcategory;
+  String namecategory;
 
-  Data(
-      {this.sId,
-        this.name,
-        this.topic,
-        this.status,
-        this.category,
-        this.color,
-        this.notification,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+  Data({
+    required this.category,
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+    required this.colorcategory,
+    required this.namecategory,
+  });
 
-  Data.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    name = json['name'];
-    topic = json['topic'];
-    status = json['status'];
-    category = json['category'];
-    color = json['color'];
-    notification = json['notification'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    iV = json['__v'];
+  factory Data.fromJson(Map<String, dynamic> json) {
+    return Data(
+      category: Category.fromJson(json['category'] ?? {}),
+      id: json['_id'] ?? '',
+      createdAt: json['createdAt'] ?? '',
+      updatedAt: json['updatedAt']  ?? '',
+      v: json['__v'] ?? '',
+      colorcategory: json['colorcategory'] ?? '',
+      namecategory: json['namecategory'] ?? '',
+    );
+  }
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'category': category.toJson(),
+      'colorcategory': colorcategory,
+      'namecategory': namecategory,
+    };
+  }
+
+
+}
+
+class DeviceModel {
+  int? count;
+  List<Data> data;
+
+  DeviceModel({
+    this.count,
+    required this.data,
+  });
+
+  factory DeviceModel.fromJson(Map<String, dynamic> json) {
+    var dataList = json['data'] as List? ?? [];
+    List<Data> data = dataList.map((e) => Data.fromJson(e)).toList();
+
+    return DeviceModel(
+      count: json['count'],
+      data: data,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['topic'] = this.topic;
-    data['status'] = this.status;
-    data['category'] = this.category;
-    data['color'] = this.color;
-    data['notification'] = this.notification;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
-    return data;
+    return {
+      'count': count,
+      'data': data.map((e) => e.toJson()).toList(),
+    };
   }
 }

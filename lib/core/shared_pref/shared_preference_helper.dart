@@ -67,7 +67,7 @@ class SharedPreferenceHelper {
 
   // locale
   String get getLocale {
-    return _sharedPreference.getString(Preferences.locale) ?? '';
+    return _sharedPreference.getString(Preferences.locale) ?? 'en';
   }
 
   ///

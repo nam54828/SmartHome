@@ -56,6 +56,8 @@ dependencies:
   #https://pub.dev/packages/loading_animation_widget
   loading_animation_widget: ^1.2.1
 
+  #https://pub.dev/packages/flex_color_picker
+  flex_color_picker: ^3.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

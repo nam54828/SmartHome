@@ -109,81 +109,92 @@ class HomePage extends GetView<HomeController> {
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Obx(() {
+              if (controller.tempCtrl.tempModel.isEmpty ||
+                  controller.tempCtrl.tempModel.first.data!.isEmpty) {
+                return const CircularProgressIndicator();
+              } else {
+                final temperature =
+                    controller.tempCtrl.tempModel.first.data!.first.statustemp;
+                final humidity =
+                    controller.tempCtrl.tempModel.first.data!.first.statushumi;
+
+                return Column(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "location".tr,
-                          style: AppText.text16
-                              .copyWith(color: ColorResources.COLOR_454141),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "location".tr,
+                              style: AppText.text16
+                                  .copyWith(color: ColorResources.COLOR_454141),
+                            ),
+                            Text(
+                              "VietNam",
+                              style: AppText.text12.copyWith(
+                                color: ColorResources.COLOR_454141,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          "VietNam",
-                          style: AppText.text12.copyWith(
-                            color: ColorResources.COLOR_454141,
-                          ),
+                        RichText(
+                          text: TextSpan(
+                              text: "$temperature",
+                              style: AppText.text30.copyWith(
+                                  color: ColorResources.WHITE,
+                                  fontWeight: FontWeight.bold),
+                              children: const [TextSpan(text: "°C")]),
                         ),
                       ],
                     ),
-                    RichText(
-                      text: TextSpan(
-                          text: "-10",
-                          style: AppText.text30.copyWith(
-                              color: ColorResources.WHITE,
-                              fontWeight: FontWeight.bold),
-                          children: const [TextSpan(text: "°C")]),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Partly Clody",
-                      style:
-                          AppText.text12.copyWith(color: ColorResources.WHITE),
+                    SizedBox(
+                      height: 10.h,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        RichText(
-                          text: TextSpan(
-                              text: "H: ",
-                              style: AppText.text14.copyWith(
-                                  color: ColorResources.WHITE,
-                                  fontWeight: FontWeight.bold),
-                              children: const [
-                                TextSpan(text: "2"),
-                                TextSpan(text: "%")
-                              ]),
+                        Text("${controller.tempCtrl.tempModel.first.data!.first.notificationtemp}", style: AppText.text12.copyWith(
+                            color: ColorResources.WHITE
                         ),
-                        SizedBox(
-                          width: 10.w,
                         ),
-                        RichText(
-                          text: TextSpan(
-                              text: "T: ",
-                              style: AppText.text14.copyWith(
-                                color: ColorResources.WHITE,
-                              ),
-                              children: const [
-                                TextSpan(text: "-10"),
-                                TextSpan(text: "°C")
-                              ]),
-                        ),
+                        Row(
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                  text: "H: ",
+                                  style: AppText.text14.copyWith(
+                                      color: ColorResources.WHITE,
+                                      fontWeight: FontWeight.bold),
+                                  children: [
+                                    TextSpan(text: "$humidity"),
+                                    const TextSpan(text: "%")
+                                  ]),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            RichText(
+                              text: TextSpan(
+                                  text: "T: ",
+                                  style: AppText.text14.copyWith(
+                                    color: ColorResources.WHITE,
+                                  ),
+                                  children: [
+                                    TextSpan(text: "$temperature"),
+                                    const TextSpan(text: "°C")
+                                  ]),
+                            ),
+                          ],
+                        )
                       ],
                     )
                   ],
-                )
-              ],
-            ),
+                );
+              }
+            }),
           )
         ],
       ),

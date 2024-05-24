@@ -1,19 +1,25 @@
 import 'dart:ui';
 
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:smarthome/data/model/device/device_model.dart';
 import 'package:smarthome/data/repositories/device_repository.dart';
+import 'package:smarthome/data/repositories/temperature_repository.dart';
+import 'package:smarthome/presentation/pages/temperature/temperature_controller.dart';
 
 class HomeController extends GetxController {
   var tabIndex = 0.obs;
   RxList<Data> categories = <Data>[].obs;
   RxSet<String> displayedNames = <String>{}.obs;
 
+  final tempCtrl = Get.find<TemperatureController>();
+
+
   void changeTabIndex(int index) {
     tabIndex.value = index;
   }
+
+
 
   RxList<DeviceModel> deviceModel = <DeviceModel>[].obs;
   RxList<Data> dataModel = <Data>[].obs;
@@ -27,13 +33,16 @@ class HomeController extends GetxController {
     await _deviceRepository.getDevice(
       onSuccess: (data) {
         deviceModel.assignAll([data]);
-        dataModel.assignAll(data.data);
+        if (deviceModel.isNotEmpty) {
+          selectedCategory.value = deviceModel.first.data.first.namecategory;
+        }
       },
       onError: (error) {
         print("Error fetching devices: $error");
       },
     );
   }
+
 
   Future<void> updateDeviceStatus(Data data, bool newStatus) async {
     data.category.status = newStatus;
@@ -45,7 +54,7 @@ class HomeController extends GetxController {
       data: data,
       idDevice: data.id ?? '',
       onSuccess: () {
-        getAllDevice();
+        // getAllDevice();
       },
       onError: (error) {
         print("Error updating device: $error");
@@ -63,9 +72,12 @@ class HomeController extends GetxController {
     return int.parse(hexCode, radix: 16);
   }
 
+
+
   @override
   void onInit() {
     super.onInit();
     getAllDevice();
+    tempCtrl.getTemperatureHumidity();
   }
 }

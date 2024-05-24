@@ -58,6 +58,8 @@ dependencies:
 
   #https://pub.dev/packages/flex_color_picker
   flex_color_picker: ^3.3.0
+  #https://pub.dev/packages/mqtt_client
+  mqtt_client: ^10.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

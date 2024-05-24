@@ -8,6 +8,7 @@ import 'package:smarthome/presentation/pages/dash_board/widgets/bottom_bar_widge
 import 'package:smarthome/presentation/pages/dash_board/widgets/custom_bottom_widget.dart';
 import 'package:smarthome/presentation/pages/home/home_page.dart';
 import 'package:smarthome/presentation/pages/notification/notification_page.dart';
+import 'package:smarthome/presentation/pages/security/security_page.dart';
 import 'package:smarthome/presentation/pages/setting/setting_page.dart';
 import 'package:smarthome/presentation/pages/voice/voice_page.dart';
 
@@ -25,7 +26,13 @@ class DashBoardPage extends GetView<DashBoardController> {
       body: Obx(() {
         return LazyIndexedStack(
           index: controller.currentIndex.value,
-          children: [const HomePage(), Container(), const VoicePage(), const NotificationPage(), const SettingPage()],
+          children: const [
+            HomePage(),
+            SecurityPage(),
+            VoicePage(),
+            NotificationPage(),
+            SettingPage()
+          ],
         );
       }),
       bottomNavigationBar: Obx(

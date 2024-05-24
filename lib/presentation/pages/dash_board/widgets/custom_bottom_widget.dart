@@ -52,6 +52,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
                       widget.imagePath,
                       width: 40.w,
                       height: 40.h,
+                      fit: BoxFit.contain,
                       colorIconsSvg: widget.isSelected
                           ? ColorResources.WHITE
                           : ColorResources.COLOR_071A52,

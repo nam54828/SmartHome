@@ -24,4 +24,14 @@ const Map<String, String> en = {
   'logout': 'Log out',
   'support': 'Support',
   'share' : 'Share',
+
+  ///History
+  'content_dialog_01': 'Do you really want to delete this\nHistory?',
+  'nothing_01' : 'Nothing to show yet',
+  'text_page_01': 'Please turn on notifications!',
+
+  ///Security
+  'add_device': 'Add device',
+  'add_device_01': "Please add devices",
+  'get_go': "Get's go"
 };

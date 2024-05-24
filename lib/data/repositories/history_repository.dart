@@ -22,4 +22,20 @@ class HistoryRepository {
       onError(ApiResponse.withError(ApiErrorHandler.getMessage(e)).error);
     }
   }
+
+  ///
+/// METHOD DELETE
+///
+ Future<void> deleteHistory({
+  required String idHistory,
+   required Function() onSuccess,
+   required Function(dynamic error) onError
+}) async {
+    try{
+      await _dio.delete('${EndPoints.history}/$idHistory');
+      onSuccess();
+    }catch(e){
+      onError(ApiResponse.withError(ApiErrorHandler.getMessage(e)).error);
+    }
+ }
 }

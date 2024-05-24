@@ -7,7 +7,7 @@ import 'package:smarthome/core/utils/color_resources.dart';
 class CategoryDevice extends StatefulWidget {
   final String text;
   final Color color;
-  final Function(bool) onTap; // Accepts a callback with the new switch value
+  final Function(bool) onTap;
   final int icon;
   final bool initialSwitchValue;
 
@@ -32,6 +32,13 @@ class _CategoryDeviceState extends State<CategoryDevice> {
     super.initState();
     _switchValue = widget.initialSwitchValue;
   }
+
+  @override
+  void didUpdateWidget(CategoryDevice oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _switchValue =  widget.initialSwitchValue;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +78,8 @@ class _CategoryDeviceState extends State<CategoryDevice> {
                     onChanged: (value) {
                       setState(() {
                         _switchValue = value;
-                        widget.onTap(value); // Call the callback with the new value
                       });
+                      widget.onTap(value);
                     },
                     activeColor: ColorResources.BLACK,
                     inactiveThumbColor: ColorResources.WHITE,

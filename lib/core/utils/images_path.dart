@@ -33,4 +33,10 @@ mixin ImagesPath {
   ///VOICE
   static String voice_search = 'assets/base/images/voice-search.png';
 
+  ///Notification
+  static String deleteDialog = 'assets/base/images/delete_dialog.png';
+  static String no_notification = 'assets/base/images/no_notification.png';
+
+  ///Security
+  static String security_img = 'assets/base/images/security.png';
 }

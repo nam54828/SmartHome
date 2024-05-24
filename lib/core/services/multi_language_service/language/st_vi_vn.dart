@@ -24,4 +24,9 @@ const Map<String, String> vi = {
   'support': 'Hỗ trợ',
   'share' : 'Chia sẻ',
 
+  ///History
+  'content_dialog_01': 'Bạn có thực sự muốn xóa\nLịch sử này không?',
+  'nothing_01' : 'Chưa có gì để hiển thị',
+  'text_page_01': 'Vui lòng bật thông báo!',
+
 };
